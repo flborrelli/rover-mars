@@ -9,24 +9,24 @@ let roverMars = {
 let roverCord = [`x: ${roverMars.x}`, ` y: ${roverMars.y}`];
 
 // Console log message if the rover indeed walk forward
-function informGoForward(){
+function informGoForward(rover){
     console.log("Rover is moving one step forward.");
-    roverCord = ([`x: ${roverMars.x}`, ` y: ${roverMars.y}`]); // Rover's coordinates variable
+    roverCord = ([`x: ${rover.x}`, ` y: ${rover.y}`]); // Rover's coordinates variable
     console.log(`The Rover coordinates are now ${roverCord}`);
 }
 
 // Console log message if the rover indeed walk backward
-function informGoBackward(){
+function informGoBackward(rover){
     console.log("Rover is moving one step backward.");
-    roverCord = ([`x: ${roverMars.x}`, ` y: ${roverMars.y}`]); // Rover's coordinates variable
+    roverCord = ([`x: ${rover.x}`, ` y: ${rover.y}`]); // Rover's coordinates variable
     console.log(`The Rover coordinates are now ${roverCord}`);
 }
 
 //Add the new coordinate to the travel log property array
-function addTravelLog(){
-    roverMars.travelLog.push(roverCord); //Add new coordinate to the travelLog array.
+function addTravelLog(rover){
+    rover.travelLog.push(roverCord); //Add new coordinate to the travelLog array.
     console.log("Rover coordinates so far:");
-    console.log(roverMars.travelLog);
+    console.log(rover.travelLog);
 }
 
 // Turn left
@@ -81,7 +81,7 @@ function turnLeft(rover){
                 console.log("Rover can't go forward to North in this position.")
             }else{
                 rover.y--
-                goForward();
+                informGoForward(rover);
             }
             break;
         case "S":
@@ -89,7 +89,7 @@ function turnLeft(rover){
                 console.log("Rover can't go forward to South in this position.");
             }else{
                 rover.y++;
-                informGoForward();
+                informGoForward(rover);
             }
             break;
         case "W":
@@ -97,7 +97,7 @@ function turnLeft(rover){
                 console.log("Rover can't go forward to West in this position.");
             }else{
                 rover.x--;
-                informGoForward();
+                informGoForward(rover);
             }
             break;
         case "E":
@@ -105,7 +105,7 @@ function turnLeft(rover){
                 console.log("Rover can't walk forward to East in this position.");
             }else{
                 rover.x++;
-                informGoForward();
+                informGoForward(rover);
             }
             break;
     }
@@ -120,7 +120,7 @@ function turnLeft(rover){
                 console.log("Rover can't go backward to South in this position.")
             }else{
                 rover.y++
-                informGoBackward();
+                informGoBackward(rover);
             }
             break;
         case "S":
@@ -128,7 +128,7 @@ function turnLeft(rover){
                 console.log("Rover can't go backward to North in this position.");
             }else{
                 rover.y--;
-                informGoBackward();
+                informGoBackward(rover);
             }
             break;
         case "W":
@@ -136,7 +136,7 @@ function turnLeft(rover){
                 console.log("Rover can't go backward to East in this position.");
             }else{
                 rover.x++;
-                informGoBackward();
+                informGoBackward(rover);
             }
             break;
         case "E":
@@ -144,7 +144,7 @@ function turnLeft(rover){
                 console.log("Rover can't go forward to West in this position.");
             }else{
                 rover.x--;
-                informGoBackward();
+                informGoBackward(rover);
             }
             break;
     }
@@ -162,11 +162,11 @@ function turnLeft(rover){
                 break;
             case "f":
                 moveForward(roverMars);
-                addTravelLog();
+                addTravelLog(roverMars);
                 break;
             case "b": 
                 moveBackward(roverMars);
-                addTravelLog();
+                addTravelLog(roverMars);
                 break;
             default:
                 console.log(`You enter a invalid character, such as "${commands[i]}". Please, check your commands and please insert only (f)orward, (b)ackward, (l)eft or (r)ight inputs.`)
@@ -177,4 +177,4 @@ function turnLeft(rover){
 
 
 //Calls
-commandRover("zsss");
+commandRover("rffffrbbb");
