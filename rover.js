@@ -6,28 +6,52 @@ let roverMars = {
     travelLog: []
 };
 
-let roverCord = [`x: ${roverMars.x}`, ` y: ${roverMars.y}`];
+// Rover 2 Object
+let roverMars2 = {
+    direction: "N",
+    x: 1,
+    y: 1,
+    travelLog: []
+};
 
-// Console log message if the rover indeed walk forward
+let roverCord = [`x: ${roverMars.x}`, ` y: ${roverMars.y}`];
+let roverCord2 = [`x: ${roverMars2.x}`, ` y: ${roverMars2.y}`];
+
+
+// Console log message if any rover indeed walk forward
 function informGoForward(rover){
     console.log("Rover is moving one step forward.");
     roverCord = ([`x: ${rover.x}`, ` y: ${rover.y}`]); // Rover's coordinates variable
-    console.log(`The Rover coordinates are now ${roverCord}`);
+    if(rover === roverMars){
+        console.log(`The Rover coordinates are now ${roverCord}`);
+    } else{
+        console.log(`The Rover2 coordinates are now ${roverCord2}`);
+    }
 }
 
-// Console log message if the rover indeed walk backward
+// Console log message if any rover indeed walk backward
 function informGoBackward(rover){
     console.log("Rover is moving one step backward.");
     roverCord = ([`x: ${rover.x}`, ` y: ${rover.y}`]); // Rover's coordinates variable
-    console.log(`The Rover coordinates are now ${roverCord}`);
+    if(rover === roverMars){
+        console.log(`The Rover coordinates are now ${roverCord}`);
+    } else{
+        console.log(`The Rover2 coordinates are now ${roverCord2}`);
+    }
 }
 
-//Add the new coordinate to the travel log property array
+//Add the new coordinate of rover1 to the travel log property array
 function addTravelLog(rover){
-    rover.travelLog.push(roverCord); //Add new coordinate to the travelLog array.
-    console.log("Rover coordinates so far:");
+    if(rover === roverMars){
+        rover.travelLog.push(roverCord);
+        console.log(`Rover 1 coordinates so far:`); //Add new coordinate to the travelLog array.    
+    } else{
+        rover.travelLog.push(roverCord2);
+        console.log(`Rover 2 coordinates so far:`); //Add new coordinate to the travelLog array in roverMars2.
+    }
     console.log(rover.travelLog);
 }
+
 
 // Turn left
 function turnLeft(rover){
@@ -151,22 +175,22 @@ function turnLeft(rover){
     }
 
   //Commands
-  function commandRover(commands){
+  function commandRover(rover, commands){
     for(var i = 0; i < commands.length; i++){ //Loop through commands
         switch(commands[i]){
             case "l":
-                turnLeft(roverMars);
+                turnLeft(rover);
                 break;
             case "r":
-                turnRight(roverMars);
+                turnRight(rover);
                 break;
             case "f":
-                moveForward(roverMars);
-                addTravelLog(roverMars);
+                moveForward(rover);
+                addTravelLog(rover);
                 break;
             case "b": 
-                moveBackward(roverMars);
-                addTravelLog(roverMars);
+                moveBackward(rover);
+                addTravelLog(rover);
                 break;
             default:
                 console.log(`You enter a invalid character, such as "${commands[i]}". Please, check your commands and please insert only (f)orward, (b)ackward, (l)eft or (r)ight inputs.`)
@@ -175,6 +199,8 @@ function turnLeft(rover){
     }
   }
 
-
 //Calls
-commandRover("rffffrbbb");
+commandRover(roverMars2, "z");
+
+commandRover(roverMars, "rfffffffffrflbbbb");
+
